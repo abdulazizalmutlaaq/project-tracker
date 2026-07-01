@@ -26,7 +26,7 @@ export default function Layout({ children }) {
               to="/"
               className={`px-3 py-1.5 rounded-md text-sm transition-colors ${location.pathname === "/" ? "bg-brand-700 text-white" : "text-brand-100 hover:bg-brand-800"}`}
             >
-              الجدول
+              المشاريع
             </Link>
             {isAdmin && (
               <Link
