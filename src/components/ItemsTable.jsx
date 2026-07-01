@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import { supabase } from "../lib/supabase";
 import { STATUS_STYLES } from "../lib/constants";
 
-export default function ItemsTable({ phase, userId, isAdmin, scopeMine }) {
+export default function ItemsTable({ phase, projectId, userId, isAdmin, scopeMine }) {
   const [rows, setRows] = useState([]);
   const [engineers, setEngineers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,10 +15,11 @@ export default function ItemsTable({ phase, userId, isAdmin, scopeMine }) {
       .from("v_items_full")
       .select("*")
       .eq("phase", phase)
+      .eq("project_id", projectId)
       .order("order_no", { ascending: true });
     if (!error) setRows(data || []);
     setLoading(false);
-  }, [phase]);
+  }, [phase, projectId]);
 
   useEffect(() => {
     load();
