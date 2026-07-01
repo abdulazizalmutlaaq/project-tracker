@@ -86,22 +86,22 @@ export default function ItemsTable({ phase, projectId, userId, isAdmin, scopeMin
       </div>
 
       <div className="overflow-x-auto rounded-xl border border-brand-100 bg-white">
-        <table className="w-full text-sm">
+        <table className="w-full text-xs">
           <thead>
             <tr className="bg-brand-50 text-brand-800 text-xs">
-              <th className="px-3 py-2.5 text-right font-semibold w-10">#</th>
-              <th className="px-3 py-2.5 text-right font-semibold min-w-[220px]">البند</th>
-              <th className="px-3 py-2.5 text-right font-semibold">المسؤول</th>
-              <th className="px-3 py-2.5 text-right font-semibold">بداية مخططة</th>
-              <th className="px-3 py-2.5 text-right font-semibold">المدة (يوم)</th>
-              <th className="px-3 py-2.5 text-right font-semibold">نهاية مخططة</th>
-              <th className="px-3 py-2.5 text-right font-semibold">الكمية</th>
-              <th className="px-3 py-2.5 text-right font-semibold">الوحدة</th>
-              <th className="px-3 py-2.5 text-right font-semibold">بداية فعلية</th>
-              <th className="px-3 py-2.5 text-right font-semibold">المنجز</th>
-              <th className="px-3 py-2.5 text-right font-semibold">النسبة</th>
-              <th className="px-3 py-2.5 text-right font-semibold">الحالة</th>
-              <th className="px-3 py-2.5 text-right font-semibold min-w-[160px]">ملاحظات</th>
+              <th className="px-2 py-2 text-right font-semibold w-10">#</th>
+              <th className="px-2 py-2 text-right font-semibold min-w-[180px]">البند</th>
+              <th className="px-2 py-2 text-right font-semibold">المسؤول</th>
+              <th className="px-2 py-2 text-right font-semibold">بداية مخططة</th>
+              <th className="px-2 py-2 text-right font-semibold">المدة (يوم)</th>
+              <th className="px-2 py-2 text-right font-semibold">نهاية مخططة</th>
+              <th className="px-2 py-2 text-right font-semibold">الكمية</th>
+              <th className="px-2 py-2 text-right font-semibold">الوحدة</th>
+              <th className="px-2 py-2 text-right font-semibold">بداية فعلية</th>
+              <th className="px-2 py-2 text-right font-semibold">المنجز</th>
+              <th className="px-2 py-2 text-right font-semibold">النسبة</th>
+              <th className="px-2 py-2 text-right font-semibold">الحالة</th>
+              <th className="px-2 py-2 text-right font-semibold min-w-[120px]">ملاحظات</th>
             </tr>
           </thead>
           <tbody>
@@ -110,9 +110,9 @@ export default function ItemsTable({ phase, projectId, userId, isAdmin, scopeMin
               const editableProg = canEditProgress(row);
               return (
                 <tr key={row.id} className="border-t border-brand-50 hover:bg-brand-50/40">
-                  <td className="px-3 py-1.5 text-idle">{row.order_no}</td>
-                  <td className="px-3 py-1.5 text-ink">{row.name}</td>
-                  <td className="px-3 py-1.5">
+                  <td className="px-2 py-1 text-idle">{row.order_no}</td>
+                  <td className="px-2 py-1 text-ink">{row.name}</td>
+                  <td className="px-2 py-1">
                     {editableDef ? (
                       <select
                         className="rounded-md border border-transparent hover:border-brand-100 bg-transparent px-1.5 py-1 text-xs focus-ring outline-none"
@@ -128,86 +128,86 @@ export default function ItemsTable({ phase, projectId, userId, isAdmin, scopeMin
                       <span className="text-xs text-idle">{row.assigned_to_name || "—"}</span>
                     )}
                   </td>
-                  <td className="px-3 py-1.5">
+                  <td className="px-2 py-1">
                     {editableDef ? (
                       <input
                         type="date"
                         defaultValue={row.planned_start_date || ""}
                         onBlur={(e) => e.target.value !== (row.planned_start_date || "") && updateItem(row.id, { planned_start_date: e.target.value || null })}
-                        className="rounded-md border border-transparent hover:border-brand-100 bg-transparent px-1.5 py-1 text-xs focus-ring outline-none w-32"
+                        className="rounded-md border border-transparent hover:border-brand-100 bg-transparent px-1.5 py-1 text-xs focus-ring outline-none w-28"
                       />
                     ) : (
                       <span className="text-xs">{row.planned_start_date || "—"}</span>
                     )}
                   </td>
-                  <td className="px-3 py-1.5">
+                  <td className="px-2 py-1">
                     {editableDef ? (
                       <input
                         type="number"
                         defaultValue={row.duration_days ?? ""}
                         onBlur={(e) => Number(e.target.value || 0) !== (row.duration_days || 0) && updateItem(row.id, { duration_days: e.target.value === "" ? null : Number(e.target.value) })}
-                        className="rounded-md border border-transparent hover:border-brand-100 bg-transparent px-1.5 py-1 text-xs focus-ring outline-none w-16"
+                        className="rounded-md border border-transparent hover:border-brand-100 bg-transparent px-1.5 py-1 text-xs focus-ring outline-none w-14"
                       />
                     ) : (
                       <span className="text-xs">{row.duration_days ?? "—"}</span>
                     )}
                   </td>
-                  <td className="px-3 py-1.5 text-xs text-idle">{row.planned_end_date || "—"}</td>
-                  <td className="px-3 py-1.5">
+                  <td className="px-2 py-1 text-xs text-idle">{row.planned_end_date || "—"}</td>
+                  <td className="px-2 py-1">
                     {editableDef ? (
                       <input
                         type="number"
                         defaultValue={row.total_qty ?? ""}
                         onBlur={(e) => Number(e.target.value || 0) !== (row.total_qty || 0) && updateItem(row.id, { total_qty: e.target.value === "" ? null : Number(e.target.value) })}
-                        className="rounded-md border border-transparent hover:border-brand-100 bg-transparent px-1.5 py-1 text-xs focus-ring outline-none w-20"
+                        className="rounded-md border border-transparent hover:border-brand-100 bg-transparent px-1.5 py-1 text-xs focus-ring outline-none w-14"
                       />
                     ) : (
                       <span className="text-xs">{row.total_qty ?? "—"}</span>
                     )}
                   </td>
-                  <td className="px-3 py-1.5">
+                  <td className="px-2 py-1">
                     {editableDef ? (
                       <input
                         type="text"
                         defaultValue={row.unit || ""}
                         onBlur={(e) => e.target.value !== (row.unit || "") && updateItem(row.id, { unit: e.target.value || null })}
-                        className="rounded-md border border-transparent hover:border-brand-100 bg-transparent px-1.5 py-1 text-xs focus-ring outline-none w-16"
+                        className="rounded-md border border-transparent hover:border-brand-100 bg-transparent px-1.5 py-1 text-xs focus-ring outline-none w-14"
                       />
                     ) : (
                       <span className="text-xs">{row.unit || "—"}</span>
                     )}
                   </td>
-                  <td className="px-3 py-1.5">
+                  <td className="px-2 py-1">
                     {editableProg ? (
                       <input
                         type="date"
                         defaultValue={row.actual_start_date || ""}
                         onBlur={(e) => e.target.value !== (row.actual_start_date || "") && updateProgress(row.id, { actual_start_date: e.target.value || null })}
-                        className="rounded-md border border-transparent hover:border-brand-100 bg-transparent px-1.5 py-1 text-xs focus-ring outline-none w-32"
+                        className="rounded-md border border-transparent hover:border-brand-100 bg-transparent px-1.5 py-1 text-xs focus-ring outline-none w-28"
                       />
                     ) : (
                       <span className="text-xs">{row.actual_start_date || "—"}</span>
                     )}
                   </td>
-                  <td className="px-3 py-1.5">
+                  <td className="px-2 py-1">
                     {editableProg ? (
                       <input
                         type="number"
                         defaultValue={row.completed_qty ?? ""}
                         onBlur={(e) => Number(e.target.value || 0) !== (row.completed_qty || 0) && updateProgress(row.id, { completed_qty: e.target.value === "" ? 0 : Number(e.target.value) })}
-                        className="rounded-md border border-transparent hover:border-brand-100 bg-transparent px-1.5 py-1 text-xs focus-ring outline-none w-20"
+                        className="rounded-md border border-transparent hover:border-brand-100 bg-transparent px-1.5 py-1 text-xs focus-ring outline-none w-14"
                       />
                     ) : (
                       <span className="text-xs">{row.completed_qty ?? 0}</span>
                     )}
                   </td>
-                  <td className="px-3 py-1.5 text-xs font-medium">{row.percent_complete != null ? `${row.percent_complete}%` : "—"}</td>
-                  <td className="px-3 py-1.5">
+                  <td className="px-2 py-1 text-xs font-medium">{row.percent_complete != null ? `${row.percent_complete}%` : "—"}</td>
+                  <td className="px-2 py-1">
                     <span className={`inline-block rounded-full px-2 py-0.5 text-[11px] font-medium ${STATUS_STYLES[row.status] || STATUS_STYLES["غير محدد"]}`}>
                       {row.status}
                     </span>
                   </td>
-                  <td className="px-3 py-1.5">
+                  <td className="px-2 py-1">
                     {editableProg ? (
                       <input
                         type="text"
