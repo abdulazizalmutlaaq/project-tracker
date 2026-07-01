@@ -53,6 +53,17 @@ export default function Projects() {
     if (data) navigate(`/project/${data}`);
   }
 
+  async function handleDelete(e, project) {
+    e.stopPropagation();
+    if (!confirm(`متأكد تبي تحذف مشروع "${project.name}"؟ هذا الإجراء ما يترجع.`)) return;
+    const { error } = await supabase.from("projects").delete().eq("id", project.id);
+    if (error) {
+      alert("فشل الحذف: " + error.message);
+      return;
+    }
+    load();
+  }
+
   return (
     <div className="max-w-3xl mx-auto">
       <div className="flex items-center justify-between mb-4">
@@ -122,9 +133,20 @@ export default function Projects() {
             <button
               key={p.id}
               onClick={() => navigate(`/project/${p.id}`)}
-              className="text-right bg-white rounded-xl border border-brand-100 p-4 hover:border-rust-500 hover:shadow-sm transition-all"
+              className="relative text-right bg-white rounded-xl border border-brand-100 p-4 hover:border-rust-500 hover:shadow-sm transition-all"
             >
-              <p className="font-semibold text-ink">{p.name}</p>
+              {isAdmin && (
+                <span
+                  role="button"
+                  tabIndex={0}
+                  onClick={(e) => handleDelete(e, p)}
+                  className="absolute left-3 top-3 text-idle hover:text-red-600 text-xs px-2 py-1 rounded-md hover:bg-red-50 transition-colors"
+                  title="حذف المشروع"
+                >
+                  حذف
+                </span>
+              )}
+              <p className="font-semibold text-ink pl-10">{p.name}</p>
               <p className="text-xs text-idle mt-1">المسؤول: {p.pm?.full_name || "غير محدد"}</p>
             </button>
           ))}
